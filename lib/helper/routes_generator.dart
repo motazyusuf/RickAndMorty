@@ -1,11 +1,23 @@
+import 'package:bloc_practice/business_logic/characters_cubit.dart';
+import 'package:bloc_practice/data/repository/characters_repository.dart';
 import 'package:bloc_practice/helper/routes_names.dart';
 import 'package:bloc_practice/presentation/views/characters_view.dart';
 import 'package:bloc_practice/presentation/views/splash_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../data/api/characters_api.dart';
 
 class RoutesGenerator {
-  static Route<dynamic> onGeneratedRoute(RouteSettings settings) {
+  late CharactersRepository charactersRepository;
+  late CharactersCubit charactersCubit;
+
+  RoutesGenerator() {
+    charactersRepository = CharactersRepository(CharactersApi());
+    charactersCubit = CharactersCubit(charactersRepository);
+  }
+
+  Route? onGeneratedRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesNames.initial:
         return MaterialPageRoute(
@@ -13,7 +25,11 @@ class RoutesGenerator {
 
       case RoutesNames.characters:
         return MaterialPageRoute(
-            builder: (context) => CharactersView(), settings: settings);
+            builder: (context) => BlocProvider(
+                  create: (context) => charactersCubit,
+                  child: CharactersView(),
+                ),
+            settings: settings);
 
       default:
         return MaterialPageRoute(
