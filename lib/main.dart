@@ -4,20 +4,21 @@ import 'package:flutter/material.dart';
 import 'helper/routes_names.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
+  final routesGenerator = RoutesGenerator();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: RoutesNames.initial,
-      onGenerateRoute: RoutesGenerator.onGeneratedRoute,
+      onGenerateRoute: routesGenerator.onGeneratedRoute,
     );
   }
 }
-
-
