@@ -1,3 +1,4 @@
+import 'package:bloc_practice/core/application_theme_manager.dart';
 import 'package:bloc_practice/helper/routes_generator.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ApplicationThemeManager.lightTheme,
       debugShowCheckedModeBanner: false,
       initialRoute: RoutesNames.initial,
       onGenerateRoute: routesGenerator.onGeneratedRoute,

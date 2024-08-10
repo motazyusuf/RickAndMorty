@@ -13,14 +13,14 @@ class CharactersApi {
     dio = Dio(options);
   }
 
-  Future<List<dynamic>> getAllCharacters() async {
+  Future<Map<String, dynamic>> getAllCharacters() async {
     try {
-      Response respone = await dio.get("characters");
+      Response respone = await dio.get("character");
+      print("Raw Data got from Api => ${respone.data}");
       return respone.data;
     } catch (e) {
-      print(
-          "error has occurred getting the information from https://rickandmortyapi.com/api/characters");
-      return [];
+      print("This is the error => $e");
+      return {};
     }
   }
 }
