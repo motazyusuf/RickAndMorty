@@ -1,4 +1,5 @@
 import 'package:bloc_practice/data/models/characters_model.dart';
+import 'package:bloc_practice/helper/routes_names.dart';
 import 'package:flutter/material.dart';
 
 class CharacterViewComponent extends StatelessWidget {
@@ -25,15 +26,20 @@ class CharacterViewComponent extends StatelessWidget {
             ),
           ),
         ),
-        child: Hero(
-          tag: character.id,
-          child: Container(
-              decoration: BoxDecoration(color: Colors.grey),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/loadingGif.gif',
-                image: character.image,
-                fit: BoxFit.cover,
-              )),
+        child: InkWell(
+          onTap: () => Navigator.pushNamed(
+              context, RoutesNames.characterDetails,
+              arguments: character),
+          child: Hero(
+            tag: character.id,
+            child: Container(
+                decoration: BoxDecoration(color: Colors.grey),
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'assets/images/loadingGif.gif',
+                  image: character.image,
+                  fit: BoxFit.cover,
+                )),
+          ),
         ),
       ),
     );
