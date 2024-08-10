@@ -24,29 +24,39 @@ class _CharactersViewState extends State<CharactersView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Characters",
-          style: TextStyle(
-              fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60),
+        child: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "Characters",
+            style: TextStyle(
+                fontSize: 26, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
         ),
       ),
       body: BlocBuilder<CharactersCubit, CharactersState>(
         builder: (context, state) {
           if (state is CharactersLoaded) {
             allCharacters = (state).characters;
-            return Column(
-              children: [
-                Expanded(
-                  child: GridView.builder(
-                      itemCount: allCharacters.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                      ),
-                      itemBuilder: (context, index) => CharacterViewComponent(
-                          character: allCharacters[index])),
-                ),
-              ],
+            return Padding(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: GridView.builder(
+                        itemCount: allCharacters.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          crossAxisCount: 2,
+                        ),
+                        itemBuilder: (context, index) => CharacterViewComponent(
+                            character: allCharacters[index])),
+                  ),
+                ],
+              ),
             );
           } else {
             return Container(

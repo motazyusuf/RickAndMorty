@@ -1,6 +1,7 @@
 import 'package:bloc_practice/business_logic/characters_cubit.dart';
 import 'package:bloc_practice/data/repository/characters_repository.dart';
 import 'package:bloc_practice/helper/routes_names.dart';
+import 'package:bloc_practice/presentation/views/characterDetails_view.dart';
 import 'package:bloc_practice/presentation/views/characters/characters_view.dart';
 import 'package:bloc_practice/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,10 @@ class RoutesGenerator {
       case RoutesNames.initial:
         return MaterialPageRoute(
             builder: (context) => SplashView(), settings: settings);
+
+      case RoutesNames.characterDetails:
+        return MaterialPageRoute(
+            builder: (context) => CharacterdetailsView(), settings: settings);
 
       case RoutesNames.characters:
         return MaterialPageRoute(
