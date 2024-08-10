@@ -2,8 +2,6 @@ import 'package:bloc_practice/business_logic/characters_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/characters_model.dart';
-
 class CharactersView extends StatefulWidget {
   const CharactersView({super.key});
 
@@ -12,17 +10,37 @@ class CharactersView extends StatefulWidget {
 }
 
 class _CharactersViewState extends State<CharactersView> {
-  late List<CharactersModel> allCharacters;
+  late List<dynamic> allCharacters;
 
   @override
   void initState() {
+    super.initState();
     allCharacters =
         BlocProvider.of<CharactersCubit>(context).getAllCharacters();
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    var blocBuilder = BlocBuilder<CharactersCubit, CharactersState>(
+      builder: (context, state) {
+        if (state is CharactersLoaded) {
+          allCharacters = (state).characters;
+          return Text("all characters => ${allCharacters[0].image}");
+        } else {
+          return Text("Loading");
+        }
+      },
+    );
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Characters",
+          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Color(0xffffc107),
+      ),
+      body: blocBuilder,
+    );
   }
 }

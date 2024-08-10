@@ -6,10 +6,13 @@ class CharactersRepository {
 
   CharactersRepository(this.charactersApi);
 
-  Future<List<CharactersModel>> getAllCharacters() async {
-    final characters = await charactersApi.getAllCharacters();
-    return characters
+  Future<List<dynamic>> getAllCharacters() async {
+    final temp = await charactersApi.getAllCharacters();
+    final characters = temp["results"];
+    var result = characters
         .map((characterInstance) => CharactersModel.fromJson(characterInstance))
         .toList();
+    print("Data Modeling Sample => ${result[0].gender}");
+    return result;
   }
 }
