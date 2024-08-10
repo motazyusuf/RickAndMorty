@@ -5,10 +5,10 @@ class CharactersModel {
   late String species;
   late String type;
   late String gender;
-  late Map<String, String> origin;
-  late Map<String, String> location;
+  late Map<String, dynamic> origin;
+  late Map<String, dynamic> location;
   late String image;
-  late List<String> appearance;
+  late List<dynamic> appearance;
   late String creationDate;
   late String urlLink;
 

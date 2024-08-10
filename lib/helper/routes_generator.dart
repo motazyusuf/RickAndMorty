@@ -1,7 +1,7 @@
 import 'package:bloc_practice/business_logic/characters_cubit.dart';
 import 'package:bloc_practice/data/repository/characters_repository.dart';
 import 'package:bloc_practice/helper/routes_names.dart';
-import 'package:bloc_practice/presentation/views/characters_view.dart';
+import 'package:bloc_practice/presentation/views/characters/characters_view.dart';
 import 'package:bloc_practice/presentation/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
