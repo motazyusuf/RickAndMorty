@@ -59,6 +59,7 @@ class _CharactersViewState extends State<CharactersView> {
               ),
             );
           } else {
+            //comment
             return Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
